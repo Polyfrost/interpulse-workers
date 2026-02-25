@@ -9,7 +9,7 @@ on:
   pull_request:
 jobs:
   docker:
-    if: github.repository_owner == 'pulseflow'
+    if: github.repository_owner == 'Polyfrost'
     name: Build and Push Docker image
     runs-on: ubuntu-latest
     permissions:
@@ -24,7 +24,7 @@ jobs:
         id: docker_meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/pulseflow/workers
+          images: ghcr.io/Polyfrost/workers
 
       - name: Login to GitHub Images
         uses: docker/login-action@v3

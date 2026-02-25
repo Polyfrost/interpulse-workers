@@ -7,7 +7,7 @@ on:
 
 jobs:
   run-docker:
-    if: github.repository_owner == 'pulseflow'
+    if: github.repository_owner == 'Polyfrost'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -26,7 +26,7 @@ jobs:
 
 
       - name: Pull Docker image from GHCR
-        run: docker pull ghcr.io/pulseflow/workers:main
+        run: docker pull ghcr.io/Polyfrost/workers:main
 
       - name: Run Docker container
         env:
@@ -53,4 +53,4 @@ jobs:
             -e CLOUDFLARE_INTEGRATION=$CLOUDFLARE_INTEGRATION \
             -e CLOUDFLARE_TOKEN=$CLOUDFLARE_TOKEN \
             -e CLOUDFLARE_ZONE_ID=$CLOUDFLARE_ZONE_ID \
-            ghcr.io/pulseflow/workers:main
+            ghcr.io/Polyfrost/workers:main
