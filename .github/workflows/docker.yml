@@ -24,7 +24,7 @@ jobs:
         id: docker_meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/Polyfrost/workers
+          images: ghcr.io/polyfrost/workers
 
       - name: Login to GitHub Images
         uses: docker/login-action@v3
