@@ -1,10 +1,10 @@
-//! # Interpulse
+//! # Interfrost
 //!
-//! Interpulse is a library which provides models and methods to interact with Pulseflow apis
+//! Interfrost is a library which provides models and methods to interact with Polyfrost/Pulseflow apis
 
 #![warn(missing_docs, unused_import_braces, missing_debug_implementations)]
 
-/// Models and methods for fetching from Pulseflow
+/// Models and methods for fetching from Polyfrost/Pulseflow
 pub mod api;
 /// Utilities and helper functions for APIs
 pub mod utils;

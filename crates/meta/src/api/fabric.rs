@@ -1,5 +1,5 @@
 use crate::utils::prelude::*;
-use interpulse::api::modded::{DUMMY_REPLACE_STRING, Manifest, PartialVersionInfo};
+use interfrost::api::modded::{DUMMY_REPLACE_STRING, Manifest, PartialVersionInfo};
 
 #[tracing::instrument(skip(semaphore, upload_files, mirror_artifacts))]
 pub async fn fetch_fabric(
@@ -8,7 +8,7 @@ pub async fn fetch_fabric(
 	mirror_artifacts: &crate::MirrorArtifacts,
 ) -> crate::utils::Result<()> {
 	fetch(
-		interpulse::api::modded::CURRENT_FABRIC_FORMAT_VERSION,
+		interfrost::api::modded::CURRENT_FABRIC_FORMAT_VERSION,
 		"fabric",
 		"https://meta.fabricmc.net/v2",
 		"https://maven.fabricmc.net/",
@@ -27,7 +27,7 @@ pub async fn fetch_legacy_fabric(
 	mirror_artifacts: &crate::MirrorArtifacts,
 ) -> crate::utils::Result<()> {
 	fetch(
-		interpulse::api::modded::CURRENT_LEGACY_FABRIC_FORMAT_VERSION,
+		interfrost::api::modded::CURRENT_LEGACY_FABRIC_FORMAT_VERSION,
 		"legacy-fabric",
 		"https://meta.legacyfabric.net/v2",
 		"https://repo.legacyfabric.net/repository/legacyfabric/",
@@ -47,7 +47,7 @@ pub async fn fetch_quilt(
 	mirror_artifacts: &crate::MirrorArtifacts,
 ) -> crate::utils::Result<()> {
 	fetch(
-		interpulse::api::modded::CURRENT_QUILT_FORMAT_VERSION,
+		interfrost::api::modded::CURRENT_QUILT_FORMAT_VERSION,
 		"quilt",
 		"https://meta.quiltmc.org/v3",
 		"https://maven.quiltmc.org/repository/release/",
@@ -225,7 +225,7 @@ async fn fetch(
 	if !fetch_fabric_versions.is_empty() || !fetch_intermediary_versions.is_empty() {
 		let fabric_manifest_path = format!("{mod_loader}/v{format_version}/manifest.json",);
 
-		let loader_versions = interpulse::api::modded::Version {
+		let loader_versions = interfrost::api::modded::Version {
 			id: DUMMY_REPLACE_STRING.to_string(),
 			stable: true,
 			loaders: fabric_manifest
@@ -235,7 +235,7 @@ async fn fetch(
 					let version_path =
 						format!("{mod_loader}/v{format_version}/versions/{}.json", x.version);
 
-					interpulse::api::modded::LoaderVersion {
+					interfrost::api::modded::LoaderVersion {
 						id: x.version,
 						url: crate::utils::format_url(&version_path),
 						stable: x.stable,
@@ -248,7 +248,7 @@ async fn fetch(
 			Manifest {
 				game_versions: std::iter::once(loader_versions)
 					.chain(fabric_manifest.game.into_iter().map(|x| {
-						interpulse::api::modded::Version {
+						interfrost::api::modded::Version {
 							id: x.version,
 							stable: x.stable,
 							loaders: vec![],

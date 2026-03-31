@@ -55,7 +55,7 @@ pub struct Version {
 	pub compliance_level: u32,
 	#[serde(skip_serializing_if = "Option::is_none")]
 	/// The SHA1 hash of the original unmodified Minecraft version's JSON
-	/// This is only available when using the Pulseflow mirror
+	/// This is only available when using the Polyfrost/Pulseflow mirror
 	pub original_sha1: Option<String>,
 }
 

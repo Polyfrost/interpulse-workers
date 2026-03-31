@@ -1,8 +1,8 @@
 use crate::utils::prelude::*;
 use futures::io::Cursor;
 use indexmap::IndexMap;
-use interpulse::api::modded::PartialVersionInfo;
-use interpulse::utils::get_path_from_artifact;
+use interfrost::api::modded::PartialVersionInfo;
+use interfrost::utils::get_path_from_artifact;
 use itertools::Itertools;
 
 /// # I HATE FORGE I HATE FORGE
@@ -75,7 +75,7 @@ pub async fn fetch_forge(
         .collect::<Vec<_>>();
 
 	fetch(
-		interpulse::api::modded::CURRENT_FORGE_FORMAT_VERSION,
+		interfrost::api::modded::CURRENT_FORGE_FORMAT_VERSION,
 		"forge",
 		"https://maven.minecraftforge.net/",
 		forge_versions,
@@ -166,7 +166,7 @@ pub async fn fetch_neo(
 		.collect();
 
 	fetch(
-		interpulse::api::modded::CURRENT_NEOFORGE_FORMAT_VERSION,
+		interfrost::api::modded::CURRENT_NEOFORGE_FORMAT_VERSION,
 		"neo",
 		"https://maven.neoforged.net/releases/",
 		parsed_versions,
@@ -188,7 +188,7 @@ async fn fetch(
 	mirror_artifacts: &crate::MirrorArtifacts,
 ) -> crate::utils::Result<()> {
 	tracing::info!("fetching forge mod loader metadata for {mod_loader}!");
-	let existing_manifest = crate::utils::fetch_json::<interpulse::api::modded::Manifest>(
+	let existing_manifest = crate::utils::fetch_json::<interfrost::api::modded::Manifest>(
 		&crate::utils::format_url(&format!("{mod_loader}/v{format_version}/manifest.json",)),
 		&semaphore,
 	)
@@ -290,12 +290,12 @@ async fn fetch(
 				#[serde(rename_all = "camelCase")]
 				struct ForgeInstallerProfileManifestV1 {
 					pub id: String,
-					pub libraries: Vec<interpulse::api::minecraft::Library>,
+					pub libraries: Vec<interfrost::api::minecraft::Library>,
 					pub main_class: Option<String>,
 					pub minecraft_arguments: Option<String>,
 					pub release_time: DateTime<Utc>,
 					pub time: DateTime<Utc>,
-					pub type_: interpulse::api::minecraft::VersionType,
+					pub type_: interfrost::api::minecraft::VersionType,
 					// pub assets: Option<String>,
 					// pub inherits_from: Option<String>,
 					// pub jar: Option<String>,
@@ -347,10 +347,10 @@ async fn fetch(
 					minecraft_arguments: install_profile.version_info.minecraft_arguments.clone(),
 					arguments: install_profile.version_info.minecraft_arguments.map(|x| {
 						std::iter::once(&(
-							interpulse::api::minecraft::ArgumentType::Game,
+							interfrost::api::minecraft::ArgumentType::Game,
 							x.split(' ')
 								.map(|x| {
-									interpulse::api::minecraft::Argument::Normal(x.to_string())
+									interfrost::api::minecraft::Argument::Normal(x.to_string())
 								})
 								.collect(),
 						))
@@ -403,18 +403,18 @@ async fn fetch(
 					// pub json: String,
 					// pub path: Option<String>,
 					// pub minecraft: String,
-					pub data: HashMap<String, interpulse::api::modded::SidedDataEntry>,
-					pub libraries: Vec<interpulse::api::minecraft::Library>,
-					pub processors: Vec<interpulse::api::modded::Processor>,
+					pub data: HashMap<String, interfrost::api::modded::SidedDataEntry>,
+					pub libraries: Vec<interfrost::api::minecraft::Library>,
+					pub processors: Vec<interfrost::api::modded::Processor>,
 				}
 
 				async fn mirror_forge_library(
 					mut zip: ZipFileReader,
-					mut lib: interpulse::api::minecraft::Library,
+					mut lib: interfrost::api::minecraft::Library,
 					maven_url: &str,
 					upload_files: &crate::UploadFiles,
 					mirror_artifacts: &crate::MirrorArtifacts,
-				) -> crate::utils::Result<interpulse::api::minecraft::Library> {
+				) -> crate::utils::Result<interfrost::api::minecraft::Library> {
 					let artifact_path = get_path_from_artifact(&lib.name)?;
 
 					if let Some(ref mut artifact) =
@@ -536,7 +536,7 @@ async fn fetch(
 						key: &str,
 						value: &str,
 						upload_files: &crate::UploadFiles,
-						libs: &mut Vec<interpulse::api::minecraft::Library>,
+						libs: &mut Vec<interfrost::api::minecraft::Library>,
 						mod_loader: &str,
 						version: &ForgeVersion,
 					) -> crate::utils::Result<String> {
@@ -579,7 +579,7 @@ async fn fetch(
 							},
 						);
 
-						libs.push(interpulse::api::minecraft::Library {
+						libs.push(interfrost::api::minecraft::Library {
 							downloads: None,
 							extract: None,
 							name: path.clone(),
@@ -626,7 +626,7 @@ async fn fetch(
 
 					new_data.insert(
 						key.clone(),
-						interpulse::api::modded::SidedDataEntry { client, server },
+						interfrost::api::modded::SidedDataEntry { client, server },
 					);
 				}
 
@@ -686,18 +686,18 @@ async fn fetch(
 
 		let forge_manifest_path = format!("{mod_loader}/v{format_version}/manifest.json",);
 
-		let manifest = interpulse::api::modded::Manifest {
+		let manifest = interfrost::api::modded::Manifest {
 			game_versions: forge_versions
 				.into_iter()
 				.sorted_by(|a, b| b.game_version.cmp(&a.game_version))
 				.rev()
 				.chunk_by(|x| x.game_version.clone())
 				.into_iter()
-				.map(|(game_version, loaders)| interpulse::api::modded::Version {
+				.map(|(game_version, loaders)| interfrost::api::modded::Version {
 					id: game_version,
 					stable: true,
 					loaders: loaders
-						.map(|x| interpulse::api::modded::LoaderVersion {
+						.map(|x| interfrost::api::modded::LoaderVersion {
 							url: crate::utils::format_url(&format!(
 								"{mod_loader}/v{format_version}/versions/{}.json",
 								x.loader_version

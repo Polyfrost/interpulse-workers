@@ -1,5 +1,5 @@
 use crate::utils::prelude::*;
-use interpulse::utils::get_path_from_artifact;
+use interfrost::utils::get_path_from_artifact;
 
 pub struct UploadFile {
 	pub file: Bytes,

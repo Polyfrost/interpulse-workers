@@ -4,6 +4,6 @@
 <!-- If this PR does not have a corresponding issue,
      make sure one gets created before you create this PR.
      You can create a bug report or feature request at
-     https://github.com/pulseflow/workers/issues/new/choose -->
+     https://github.com/Polyfrost/interfrost-workers/issues/new/choose -->
 
 Closes #(issue)

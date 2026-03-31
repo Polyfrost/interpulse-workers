@@ -13,7 +13,7 @@ license.workspace = true
 workspace = true
 
 [dependencies]
-interpulse = { path = "../interface" }
+interfrost = { path = "../interface" }
 meta_patcher = { path = "../patcher" }
 
 dotenvy.workspace = true

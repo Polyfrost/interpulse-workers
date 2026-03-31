@@ -13,7 +13,7 @@ license.workspace = true
 workspace = true
 
 [dependencies]
-interpulse = { path = "../interface" }
+interfrost = { path = "../interface" }
 
 clap.workspace = true
 eyre.workspace = true

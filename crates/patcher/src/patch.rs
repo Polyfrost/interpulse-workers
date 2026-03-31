@@ -1,5 +1,5 @@
-use interpulse::api::minecraft::{Library, PartialLibrary};
-use interpulse::utils::prelude::*;
+use interfrost::api::minecraft::{Library, PartialLibrary};
+use interfrost::utils::prelude::*;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]

@@ -1,5 +1,5 @@
 use crate::utils::{download_file, fetch_json, format_url, sha1_async};
-use interpulse::api::minecraft::{
+use interfrost::api::minecraft::{
 	Library, VERSION_MANIFEST_URL, VersionInfo, VersionManifest, merge_partial_library,
 };
 use meta_patcher::patch::LibraryPatch;
@@ -16,7 +16,7 @@ pub async fn fetch(
 	let existing_manifest = fetch_json::<VersionManifest>(
 		&format_url(&format!(
 			"minecraft/v{}/manifest.json",
-			interpulse::api::minecraft::CURRENT_FORMAT_VERSION
+			interfrost::api::minecraft::CURRENT_FORMAT_VERSION
 		)),
 		&semaphore,
 	)
@@ -108,7 +108,7 @@ pub async fn fetch(
 			.map(|((version, bytes), hash)| {
 				let version_path = format!(
 					"minecraft/v{}/versions/{}.json",
-					interpulse::api::minecraft::CURRENT_FORMAT_VERSION,
+					interfrost::api::minecraft::CURRENT_FORMAT_VERSION,
 					version.id
 				);
 
@@ -121,7 +121,7 @@ pub async fn fetch(
 					},
 				);
 
-				interpulse::api::minecraft::Version {
+				interfrost::api::minecraft::Version {
 					original_sha1: fetch_versions
 						.iter()
 						.find(|x| x.id == version.id)
@@ -142,7 +142,7 @@ pub async fn fetch(
 
 		let version_manifest_path = format!(
 			"minecraft/v{}/manifest.json",
-			interpulse::api::minecraft::CURRENT_FORMAT_VERSION
+			interfrost::api::minecraft::CURRENT_FORMAT_VERSION
 		);
 
 		let new_manifest = VersionManifest {

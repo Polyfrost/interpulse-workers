@@ -1,6 +1,6 @@
-# Pulseflow Minecraft Metadata Collector
+# Polyfrost/Pulseflow Minecraft Metadata Collector
 
-A docker-compatible server that can be run as a GitHub actions cronjob that manages, formats, and produces Minecraft loader metadata that is compatible with the [`interpulse`](https://crates.io/crates/interpulse) Minecraft module specification.
+A docker-compatible server that can be run as a GitHub actions cronjob that manages, formats, and produces Minecraft loader metadata that is compatible with the [`interfrost`](https://crates.io/crates/interfrost) Minecraft module specification.
 
 - [`src/main.rs`](./src/main.rs): initializes the collection
 - [`src/api/`](./src/api/): core interfaces for minecraft, fabric-based, and forge-based loader apis

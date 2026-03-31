@@ -1,6 +1,6 @@
 [package]
-name = "interpulse"
-description = "utilities for interacting with pulseflow apis"
+name = "interfrost"
+description = "utilities for interacting with Polyfrost/pulseflow apis"
 publish = true
 version.workspace = true
 authors.workspace = true

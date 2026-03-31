@@ -2,8 +2,8 @@ use tracing_error::InstrumentError;
 
 #[derive(thiserror::Error, Debug)]
 pub enum ErrorKind {
-	#[error("interpulse error: {0}")]
-	Interpulse(#[from] interpulse::Error),
+	#[error("interfrost error: {0}")]
+	Interfrost(#[from] interfrost::Error),
 	#[error("invalid input: {0}")]
 	InvalidInput(String),
 	#[error("failed to manage asynchronous tasks")]

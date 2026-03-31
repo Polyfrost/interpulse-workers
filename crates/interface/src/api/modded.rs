@@ -15,7 +15,7 @@ pub const CURRENT_LEGACY_FABRIC_FORMAT_VERSION: usize = 0;
 pub const CURRENT_CLEANROOM_FORMAT_VERSION: usize = 0;
 
 /// The dummy replace string library names, inheritsFrom, and version names should be replaced with
-pub const DUMMY_REPLACE_STRING: &str = "${interpulse.gameVersion}";
+pub const DUMMY_REPLACE_STRING: &str = "${interfrost.gameVersion}";
 
 /// A data variable entry that depends on the side of the installation
 #[cfg_attr(feature = "specta", derive(specta::Type))]

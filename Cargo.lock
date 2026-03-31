@@ -1275,8 +1275,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "interpulse"
-version = "1.3.1"
+name = "interfrost"
+version = "1.3.2"
 dependencies = [
  "chrono",
  "serde",
@@ -1459,19 +1459,19 @@ dependencies = [
 
 [[package]]
 name = "meta_patcher"
-version = "1.3.1"
+version = "1.3.2"
 dependencies = [
  "clap",
  "color-eyre",
  "eyre",
- "interpulse",
+ "interfrost",
  "serde",
  "serde_json",
 ]
 
 [[package]]
 name = "meta_workers"
-version = "1.3.1"
+version = "1.3.2"
 dependencies = [
  "async_zip",
  "bytes 1.10.1",
@@ -1480,7 +1480,7 @@ dependencies = [
  "dotenvy",
  "futures 0.3.31",
  "indexmap",
- "interpulse",
+ "interfrost",
  "itertools",
  "meta_patcher",
  "reqwest",
